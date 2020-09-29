@@ -12,6 +12,6 @@ public class ChatController {
     @MessageMapping("/chat")
     @SendTo("/topic/greetings")
     public Greeting greeting(HelloMessage message) throws Exception {
-        return new Greeting(HtmlUtils.htmlEscape(message.getName()));
+        return new Greeting(HtmlUtils.htmlEscape(message.getName() +": " + message.getMessage()));
     }
 }
