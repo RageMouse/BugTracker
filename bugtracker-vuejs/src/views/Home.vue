@@ -1,17 +1,22 @@
 <template>
-  <div class="home">
-    <WebsocketGreetings msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-container>
+    <v-row class="text-center">
+      <v-col cols="12"></v-col>
+
+      <v-col class="mb-4">
+        <h1 class="display-2 font-weight-bold mb-3">Welcome to this place.</h1>
+
+        <v-banner class="subheading font-weight-regular">
+          This website was created for me test different things out. I also wanted to try to do things in a different way, a more optimized way.
+        </v-banner>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import WebsocketGreetings from '@/components/WebsocketGreetings.vue'
-
 export default {
-  name: 'Home',
-  components: {
-    WebsocketGreetings
-  }
-}
+  name: "Home",
+  components: {}
+};
 </script>

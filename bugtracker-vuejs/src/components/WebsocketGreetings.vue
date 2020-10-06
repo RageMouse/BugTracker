@@ -7,14 +7,16 @@
 
       <v-col class="mb-4">
         <h1 class="display-2 font-weight-bold mb-3">Welcome to Websocket Test</h1>
-        <h2>Websocket connection:</h2>
+        <h2>Websocket connection: {{ text }}</h2>
         <v-btn class="mr-2" color="success" :disabled="connected == true" @click.prevent="connect">Connect</v-btn>
         <v-btn color="error" :disabled="connected == false" @click.prevent="disconnect">Disconnect</v-btn>
       </v-col>
 
       <v-col class="mb-5" cols="12">
-        <v-text-field v-model="send_message" label="What is your name?"></v-text-field>
-        <v-btn color="success" :disabled="connected == false" @click.prevent="send">Send</v-btn>
+        <v-text-field :disabled="isDisabled" v-model="send_greeting" label="What is your name?"></v-text-field>
+        <v-btn color="success" @click="isDisabled = !isDisabled" :disabled="connected == false" @click.prevent="send">Enter</v-btn>
+        <v-text-field :maxlength="max" v-model="send_message" label="Type here to chat"></v-text-field>
+        <v-btn color="success" :disabled="connected == false" @click.prevent="sendMessage">Send</v-btn>
       </v-col>
       <div class="row">
         <div class="col-md-12">
@@ -45,21 +47,39 @@ export default {
   data() {
     return {
       received_messages: [],
+      send_greeting: null,
       send_message: null,
-      connected: false
+      connected: false,
+      text: "",
+      isDisabled: false,
+      max: 256
     };
   },
   methods: {
     send() {
-      console.log("Send message:" + this.send_message);
+      console.log("Send greeting:" + this.send_greeting);
       if (this.stompClient && this.stompClient.connected) {
-        const msg = { name: this.send_message };
+        const msg = { name: this.send_greeting };
         console.log(JSON.stringify(msg));
         this.stompClient.send("/app/hello", JSON.stringify(msg), {});
       }
     },
+    sendMessage() {
+      console.log("Send message:" + this.send_message);
+      if (this.send_message == ""){
+        console.log("Send message:" + this.send_message);
+      }
+      else if (this.stompClient && this.stompClient.connected) {
+        const msg = { 
+          name: this.send_greeting, 
+          message: this.send_message };
+        console.log(JSON.stringify(msg));
+        this.stompClient.send("/app/chat", JSON.stringify(msg), {});
+        this.send_message = "";
+      }
+    },
     connect() {
-      this.socket = new SockJS("http://localhost:8008/gs-guide-websocket");
+      this.socket = new SockJS("http://localhost:8008/websocket");
       this.stompClient = Stomp.over(this.socket);
       this.stompClient.connect(
         {},
@@ -70,10 +90,12 @@ export default {
             console.log(tick);
             this.received_messages.push(JSON.parse(tick.body).content);
           });
+          this.text + "You are part of the Great Scheme."
         },
         error => {
           console.log(error);
           this.connected = false;
+          this.text = "No Connection possible."
         }
       );
     },
