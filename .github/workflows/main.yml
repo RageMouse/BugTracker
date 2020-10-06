@@ -10,6 +10,10 @@ on:
   pull_request:
     branches: [ master ]
 
+defaults:
+  run:
+    working-directory: bugtracking-backend
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -27,8 +31,8 @@ jobs:
         run: echo Hello, world!
 
       # Runs a set of commands using the runners shell
-      - uses: xlui/action-maven-cli/jdk11@master
       - name: Run a multi-line script
-        working-directory: bugtracker-backend
-        run: |
-          mvn clean install
+      - uses: xlui/action-maven-cli/jdk11@master
+        id: build
+        with:
+          lifecycle: 'mvn clean install'
