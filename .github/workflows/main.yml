@@ -32,8 +32,14 @@ jobs:
           java-version: 11
 
       # Runs a set of commands using the runners shell
-      - name: Maven Clean & Install
+      - name: Maven Build
         run: |
-          echo 'Maven Clean & Install'
-          mvn clean install
+          echo 'Maven Build'
+          mvn compile
           echo 'Jobs done'
+          
+      - name: Maven Test
+        run: |
+          echo 'Maven Test'
+          mvn test
+          echo 'Jobs Done'
