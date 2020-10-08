@@ -22,6 +22,7 @@
       </div>
       <v-tabs >
         <v-tab to="/">Home</v-tab>
+        <v-tab to="/project">Projects</v-tab>
         <v-tab to="/chat">Chat</v-tab>
         <v-tab to="/about">About</v-tab>
       </v-tabs>
