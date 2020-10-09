@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import Chat from '../views/Chat.vue'
+import Project from '../views/Project.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ Vue.use(VueRouter)
     path: '/chat',
     name: 'Chat',
     component: Chat
+  },
+  {
+    path: '/project',
+    name: 'Project',
+    component: Project
   }
 ]
 
