@@ -8,23 +8,17 @@ import java.util.List;
 
 @Entity
 @Data
-public class Project {
+public class Category {
     @Id
     @GeneratedValue
-    private Long projectId;
+    private Long categoryId;
 
     @NotNull
-    private String projectName;
-
-    @NotNull
-    private String projectDescription;
-
-    @NotNull
-    private boolean active;
+    private String categoryName;
 
     @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-    @JoinTable(name = "project_bug",
-            joinColumns = {@JoinColumn(name = "projectId")},
+    @JoinTable(name = "category_bug",
+            joinColumns = {@JoinColumn(name = "categoryId")},
             inverseJoinColumns = {@JoinColumn(name = "bugId")})
-    private List<Bug> projectBugList;
+    private List<Bug> categoryBugList;
 }
