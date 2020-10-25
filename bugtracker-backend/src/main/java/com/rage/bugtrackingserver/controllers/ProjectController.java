@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.*;
 public class ProjectController {
     ProjectRepo projectRepo;
 
+    @GetMapping(path = "/" )
+    public Iterable<Project> projects() {
+        return projectRepo.findAll();
+    }
+
     @PostMapping("/")
     public ResponseEntity<?> createProject(@RequestBody ProjectCreate model) {
         Project project = new Project();
