@@ -11,6 +11,7 @@
         <v-banner class="subheading font-weight-regular">
           Where projects comes to die.
         </v-banner>
+        <Projects/>
       </v-col>
     </v-row>
     <v-row> </v-row>
@@ -18,8 +19,12 @@
 </template>
 
 <script>
+import Projects from '@/components/Projects.vue'
+
 export default {
   name: "Project",
-  components: {},
+  components: {
+    Projects
+  },
 };
 </script>
