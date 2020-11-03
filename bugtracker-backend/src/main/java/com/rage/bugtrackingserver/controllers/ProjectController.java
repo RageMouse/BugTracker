@@ -8,7 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin
+import java.util.Optional;
+
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping(value = "/project")
 public class ProjectController {
@@ -22,8 +24,13 @@ public class ProjectController {
 
     @PostMapping("/")
     public ResponseEntity<?> createProject(@RequestBody ProjectCreate model) {
-        Project project = new Project();
+        Project project = new Project(model.getProjectName(), model.getProjectDescription(), model.isActive());
         projectRepo.save(project);
         return new ResponseEntity<>(project, HttpStatus.CREATED);
+    }
+
+    @GetMapping(path = "/{id}" )
+    public Optional<Project> findById(@PathVariable("id") Long id) {
+        return projectRepo.findById(id);
     }
 }

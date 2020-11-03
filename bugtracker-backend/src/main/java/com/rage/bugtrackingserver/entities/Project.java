@@ -22,9 +22,19 @@ public class Project {
     @NotNull
     private boolean active;
 
-    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "project_bug",
             joinColumns = {@JoinColumn(name = "projectId")},
             inverseJoinColumns = {@JoinColumn(name = "bugId")})
     private List<Bug> projectBugList;
+
+    public Project() {
+
+    }
+
+    public Project(String projectName, String projectDescription, boolean active) {
+        this.projectName = projectName;
+        this.projectDescription = projectDescription;
+        this.active = active;
+    }
 }
