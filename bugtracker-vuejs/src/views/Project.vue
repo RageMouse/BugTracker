@@ -11,6 +11,10 @@
         <v-banner class="subheading font-weight-regular">
           Where projects comes to die.
         </v-banner>
+        <v-col  >
+        <v-btn id="createProject" depressed small color="primary" @click="toggleCreateProject">Create Project</v-btn>
+        </v-col>
+        <CreateProject v-if="showCreateProject"/>
         <Projects/>
       </v-col>
     </v-row>
@@ -20,11 +24,21 @@
 
 <script>
 import Projects from '@/components/Projects.vue'
+import CreateProject from '@/components/CreateProject.vue'
 
 export default {
   name: "Project",
   components: {
-    Projects
+    Projects,
+    CreateProject
   },
+  data: () => ({
+    showCreateProject: false
+  }),
+  methods: {
+    toggleCreateProject () {
+      this.showCreateProject = !this.showCreateProject;
+    }
+  }
 };
 </script>
