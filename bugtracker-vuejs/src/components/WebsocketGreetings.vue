@@ -79,7 +79,7 @@ export default {
       }
     },
     connect() {
-      this.socket = new SockJS("http://localhost:8008/websocket");
+      this.socket = new SockJS("http://192.168.99.100:8008/websocket");
       this.stompClient = Stomp.over(this.socket);
       this.stompClient.connect(
         {},
