@@ -42,6 +42,7 @@ export const store = new Vuex.Store({
                 })
                 .then(({data}) => {
                     context.commit("setProject", data);
+                    context.dispatch('getAllProjects')
                   }).catch((error) => {
                     throw error
                   })
