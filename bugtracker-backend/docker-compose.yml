@@ -12,6 +12,6 @@ services:
   backend:
     build: .
     ports:
-      - "8088:8088"
+      - "8008:8008"
     depends_on:
       - db

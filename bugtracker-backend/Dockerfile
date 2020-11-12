@@ -1,4 +1,4 @@
-FROM openjdk:12-alpine
+FROM openjdk:12
 VOLUME /tmp
 COPY target/*.jar app.jar
 
