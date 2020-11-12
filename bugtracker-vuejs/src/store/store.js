@@ -41,11 +41,21 @@ export const store = new Vuex.Store({
                     active: data.active
                 })
                 .then(({data}) => {
-                    context.commit("setProject", data);
-                    context.dispatch('getAllProjects')
+                    context.commit("addProject", data)
                   }).catch((error) => {
                     throw error
                   })
+        },
+        getProject(context, id) {
+            return axios
+                .get("http://192.168.99.100:8008/project/" + id)
+                .then((response) => {
+                    context.commit("setProject", response.data);
+                    console.log(id)
+                })
+                .catch(error => {
+                    throw new Error(error)
+                });
         }
     },
     mutations: {
@@ -54,6 +64,10 @@ export const store = new Vuex.Store({
         },
         setProject(state, project){
             state.project = project;
+            console.log(state.project)
+        },
+        addProject(state, project){
+            state.projects.push(project)
         }
     }
 });

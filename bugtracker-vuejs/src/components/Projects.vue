@@ -19,15 +19,27 @@
             >
               <v-card-title v-text="project.projectName"></v-card-title>
             </v-img>
-            <v-card-text>
-              <v-row align="center" class="mx-0" v-text="project.projectDescription"> </v-row>
+            <v-card-text
+              style="
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                height: 45px;
+              "
+              class="text--primary text-left"
+            >
+              {{ project.projectDescription }}
             </v-card-text>
 
             <v-card-actions>
-              <!-- <router-link :to="{path: '/showAuction/' + card.projectId}" tag="v-btn">
-                <v-btn text>Details</v-btn>
-              </router-link> -->
-
+              <router-link :to="{path: '/project/' + project.projectId}">
+                <v-btn
+                  depressed
+                  color="primary"
+                  
+                  >Details</v-btn
+                >
+              </router-link>
               <v-spacer></v-spacer>
 
               <v-btn icon>
