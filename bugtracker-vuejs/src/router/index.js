@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import Chat from '../views/Chat.vue'
 import Projects from '../views/Projects.vue'
+import Project from '../views/Project.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,12 @@ Vue.use(VueRouter)
     path: '/projects',
     name: 'Projects',
     component: Projects
+  }
+  ,
+  {
+    path: '/project/:id',
+    name: 'Project',
+    component: Project
   }
 ]
 
