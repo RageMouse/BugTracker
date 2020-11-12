@@ -41,8 +41,7 @@ export const store = new Vuex.Store({
                     active: data.active
                 })
                 .then(({data}) => {
-                    context.commit("setProject", data);
-                    context.dispatch('getAllProjects')
+                    context.commit("addProject", data)
                   }).catch((error) => {
                     throw error
                   })
@@ -54,6 +53,9 @@ export const store = new Vuex.Store({
         },
         setProject(state, project){
             state.project = project;
+        },
+        addProject(state, project){
+            state.projects.push(project)
         }
     }
 });

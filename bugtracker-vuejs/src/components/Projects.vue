@@ -20,13 +20,16 @@
               <v-card-title v-text="project.projectName"></v-card-title>
             </v-img>
             <v-card-text>
-              <v-row align="center" class="mx-0" v-text="project.projectDescription"> </v-row>
+              <v-row
+                align="center"
+                class="mx-0"
+                v-text="project.projectDescription"
+              >
+              </v-row>
             </v-card-text>
 
             <v-card-actions>
-              <!-- <router-link :to="{path: '/showAuction/' + card.projectId}" tag="v-btn">
-                <v-btn text>Details</v-btn>
-              </router-link> -->
+              <v-btn @click="getProject(project.projectId)" text>Details</v-btn>
 
               <v-spacer></v-spacer>
 
@@ -56,6 +59,9 @@ export default {
     getAllProjects() {
       return this.$store.dispatch("getAllProjects");
     },
+    getProject(id) {
+      return this.$store.dispatch("getProject", id);
+    }
   },
 };
 </script>
