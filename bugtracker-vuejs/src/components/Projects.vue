@@ -1,7 +1,9 @@
 <template>
   <v-card class="elevation-12 mx-auto" max-width="1500">
+    <div v-if="projects.length == 0">No projects available <br/><iframe width="560" height="315" src="https://www.youtube.com/embed/6EEW-9NDM5k" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
     <v-container fluid>
       <v-row dense>
+        
         <v-col
           v-for="project in projects"
           :key="project.projectId"
@@ -18,6 +20,7 @@
               height="200px"
             >
               <v-card-title v-text="project.projectName"></v-card-title>
+              
             </v-img>
             <v-card-text
               style="
@@ -32,13 +35,8 @@
             </v-card-text>
 
             <v-card-actions>
-              <router-link :to="{path: '/project/' + project.projectId}">
-                <v-btn
-                  depressed
-                  color="primary"
-                  
-                  >Details</v-btn
-                >
+              <router-link :to="{ path: '/project/' + project.projectId }">
+                <v-btn depressed color="primary">Details</v-btn>
               </router-link>
               <v-spacer></v-spacer>
 
@@ -63,6 +61,7 @@ export default {
   },
   mounted() {
     this.getAllProjects();
+    console.log(this.projects);
   },
   methods: {
     getAllProjects() {
