@@ -18,15 +18,21 @@
 
     <v-card-actions>
       <v-spacer></v-spacer>
-
+      <v-btn depressed color="primary" @click.stop="showEditForm=true">Edit</v-btn>
       <v-btn depressed color="primary" to="/projects">Back</v-btn>
     </v-card-actions>
+    <EditProject :visible="showEditForm" @close="showEditForm=false"/>
   </v-card>
 </template>
 
 <script>
+import EditProject from "./EditProject"
+
 export default {
   name: "projectDetails",
+  components: {
+    EditProject
+  },
   computed: {
     project() {
       return this.$store.getters.project;
@@ -40,5 +46,8 @@ export default {
       return this.$store.dispatch("getProject", this.$route.params.id);
     },
   },
+  data: () => ({
+    showEditForm: false,
+  }),
 };
 </script>

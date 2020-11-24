@@ -34,7 +34,7 @@
             id="validateButton"
             color="success"
             class="mr-4"
-            @click="createProject"
+            @click="validate"
             >Validate</v-btn
           >
         </v-form>
@@ -54,8 +54,17 @@ export default {
     },
   }),
   methods: {
+    validate() {
+      if (this.$refs.form.validate()) {
+        this.createProject();
+        this.reset();
+      }
+    },
     createProject() {
       return this.$store.dispatch("createProject", this.form);
+    },
+    reset() {
+      this.$refs.form.reset();
     },
   },
 };
