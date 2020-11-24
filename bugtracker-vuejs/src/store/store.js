@@ -9,6 +9,7 @@ export const store = new Vuex.Store({
     state: {
         projects: {},
         project: {
+            projectid: '',
             projectName: '',
             projectDescription: '',
             active: true
@@ -51,7 +52,20 @@ export const store = new Vuex.Store({
                 .get("http://192.168.99.100:8008/project/" + id)
                 .then((response) => {
                     context.commit("setProject", response.data);
-                    console.log(id)
+                })
+                .catch(error => {
+                    throw new Error(error)
+                });
+        },
+        editProject(context, data) {
+            return axios
+                .put("http://192.168.99.100:8008/project/", {
+                    projectId: data.projectId,
+                    projectName: data.projectName,
+                    projectDescription: data.projectDescription,
+                })
+                .then((response) => {
+                    context.commit("setProject", response.data);
                 })
                 .catch(error => {
                     throw new Error(error)
@@ -64,7 +78,6 @@ export const store = new Vuex.Store({
         },
         setProject(state, project){
             state.project = project;
-            console.log(state.project)
         },
         addProject(state, project){
             state.projects.push(project)
