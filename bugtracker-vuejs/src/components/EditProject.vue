@@ -53,9 +53,6 @@ export default {
       (v) => (v && v.length <= 25) || "Name must be less than 25 characters",
     ],
   }),
-  mounted() {
-    this.getProject();
-  },
   computed: {
     show: {
       get() {
@@ -80,10 +77,7 @@ export default {
     editProject() {
       this.form.projectId = this.project.projectId;
       return this.$store.dispatch("editProject", this.form);
-    },
-    getProject() {
-      return this.$store.dispatch("getProject", this.$route.params.id);
-    },
+    }
   },
 };
 </script>
