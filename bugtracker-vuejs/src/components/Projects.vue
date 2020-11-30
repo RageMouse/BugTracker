@@ -61,7 +61,6 @@ export default {
   },
   mounted() {
     this.getAllProjects();
-    console.log(this.projects);
   },
   methods: {
     getAllProjects() {
