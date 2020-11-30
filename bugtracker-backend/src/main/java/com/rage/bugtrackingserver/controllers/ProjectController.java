@@ -4,6 +4,7 @@ import com.rage.bugtrackingserver.entities.Project;
 import com.rage.bugtrackingserver.models.ProjectCreate;
 import com.rage.bugtrackingserver.models.ProjectEdit;
 import com.rage.bugtrackingserver.repositories.ProjectRepo;
+import com.rage.bugtrackingserver.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,10 @@ import java.util.Optional;
 @RequestMapping(value = "/project")
 public class ProjectController {
     @Autowired
-    ProjectRepo projectRepo;
+    private ProjectRepo projectRepo;
+
+    @Autowired
+    private ProjectService projectService;
 
     @GetMapping(path = "/" )
     public Iterable<Project> projects() {
@@ -25,9 +29,7 @@ public class ProjectController {
 
     @PostMapping("/")
     public ResponseEntity<?> createProject(@RequestBody ProjectCreate model) {
-        Project project = new Project(model.getProjectName(), model.getProjectDescription(), model.isActive());
-        projectRepo.save(project);
-        return new ResponseEntity<>(project, HttpStatus.CREATED);
+        return projectService.createProject(model);
     }
 
     @GetMapping(path = "/{id}" )
