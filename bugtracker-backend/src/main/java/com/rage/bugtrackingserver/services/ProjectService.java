@@ -19,4 +19,8 @@ public class ProjectService {
         projectRepo.save(project);
         return new ResponseEntity<>(project, HttpStatus.CREATED);
     }
+
+    public Project findByProjectId(Long projectId){
+        return projectRepo.getByProjectId(projectId);
+    }
 }

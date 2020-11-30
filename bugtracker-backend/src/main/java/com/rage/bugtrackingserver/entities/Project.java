@@ -22,10 +22,7 @@ public class Project {
     @NotNull
     private boolean active;
 
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "project_bug",
-            joinColumns = {@JoinColumn(name = "projectId")},
-            inverseJoinColumns = {@JoinColumn(name = "bugId")})
+    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "project")
     private List<Bug> projectBugList;
 
     public Project() {
@@ -36,5 +33,12 @@ public class Project {
         this.projectName = projectName;
         this.projectDescription = projectDescription;
         this.active = active;
+    }
+
+    public Project(String projectName, String projectDescription, boolean active, List<Bug> projectBugList) {
+        this.projectName = projectName;
+        this.projectDescription = projectDescription;
+        this.active = active;
+        this.projectBugList = projectBugList;
     }
 }

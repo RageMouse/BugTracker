@@ -4,8 +4,9 @@ import lombok.Data;
 
 @Data
 public class BugSubmit {
-    private long bugId;
+    private Long bugId;
     private String bugTitle;
     private String bugDescription;
     private boolean solved;
+    private Long projectId;
 }
