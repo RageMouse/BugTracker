@@ -18,11 +18,13 @@
 
     <v-card-actions>
       <v-spacer></v-spacer>
+      <v-btn depressed color="secondary">Add Bug</v-btn>
       <v-btn depressed color="primary" @click.stop="showEditForm=true">Edit</v-btn>
       <v-btn depressed color="primary" to="/projects">Back</v-btn>
     </v-card-actions>
     <EditProject :visible="showEditForm" @close="showEditForm=false"/>
   </v-card>
+  
 </template>
 
 <script>

@@ -13,7 +13,8 @@ export const store = new Vuex.Store({
             projectName: '',
             projectDescription: '',
             active: true
-        }
+        },
+        bugs: {}
     },
     getters: {
         projects(state){
@@ -21,6 +22,9 @@ export const store = new Vuex.Store({
         },
         project(state){
             return state.project
+        },
+        bugs(state){
+            return state.bugs
         }
     },
     actions: {
@@ -70,7 +74,17 @@ export const store = new Vuex.Store({
                 .catch(error => {
                     throw new Error(error)
                 });
-        }
+        },
+        getBugs(context, id) {
+            return axios
+                .get("http://192.168.99.100:8008/bug/" + id)
+                .then((response) => {
+                    context.commit("setBugs", response.data);
+                })
+                .catch(error => {
+                    throw new Error(error)
+                });
+        },
     },
     mutations: {
         setProjects(state, projects){
@@ -81,6 +95,9 @@ export const store = new Vuex.Store({
         },
         addProject(state, project){
             state.projects.push(project)
-        }
+        },
+        setBugs(state, bugs){
+            state.bugs = bugs;
+        },
     }
 });
