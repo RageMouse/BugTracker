@@ -1,6 +1,10 @@
 <template>
   <v-card max-width="1250" class="mx-auto">
-    <v-subheader>Bug List</v-subheader>
+    <v-subheader>Bug List 
+      <v-spacer></v-spacer>
+      <v-btn depressed color="secondary" @click="toggleSubmitBug">Add Bug</v-btn>
+      </v-subheader>
+      <SubmitBug v-if="showSubmitBug"/>
     <v-list three-line>
       <template v-for="bug in bugs">
         <v-divider
@@ -25,8 +29,16 @@
 
 
 <script>
+import SubmitBug from "./SubmitBug"
+
 export default {
   name: "bugList",
+  components: {
+    SubmitBug
+  },
+  data: () => ({
+    showSubmitBug: false
+  }),
   computed: {
     bugs() {
       return this.$store.getters.bugs;
@@ -39,6 +51,9 @@ export default {
     getBugs() {
       return this.$store.dispatch("getBugs", this.$route.params.id);
     },
+    toggleSubmitBug () {
+      this.showSubmitBug = !this.showSubmitBug;
+    }
   },
 };
 </script>
