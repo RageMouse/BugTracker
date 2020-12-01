@@ -14,6 +14,7 @@
         <v-col  >
         </v-col>
         <Project/>
+        <BugList/>
       </v-col>
     </v-row>
     <v-row> </v-row>
@@ -22,11 +23,13 @@
 
 <script>
 import Project from '@/components/Project.vue'
+import BugList from '../components/BugList.vue'
 
 export default {
   name: "ProjectDetails",
   components: {
-    Project
+    Project,
+    BugList
   }
 };
 </script>
