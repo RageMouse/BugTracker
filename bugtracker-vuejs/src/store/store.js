@@ -85,6 +85,20 @@ export const store = new Vuex.Store({
                     throw new Error(error)
                 });
         },
+        submitBug(context, data){
+            return axios
+                .post("http://192.168.99.100:8008/bug/", {
+                    bugTitle: data.bugTitle,
+                    bugDescription: data.bugDescription,
+                    solved: data.solved,
+                    projectId: data.projectId
+                })
+                .then(({data}) => {
+                    context.commit("addBug", data)
+                  }).catch((error) => {
+                    throw error
+                  })
+        },
     },
     mutations: {
         setProjects(state, projects){
@@ -98,6 +112,9 @@ export const store = new Vuex.Store({
         },
         setBugs(state, bugs){
             state.bugs = bugs;
+        },
+        addBug(state, bug){
+            state.bugs.push(bug)
         },
     }
 });
