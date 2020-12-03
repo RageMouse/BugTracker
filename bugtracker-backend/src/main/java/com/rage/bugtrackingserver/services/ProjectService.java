@@ -11,8 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @Service
 public class ProjectService {
-    @Autowired
     private ProjectRepo projectRepo;
+
+    @Autowired
+    public void setProjectRepo(ProjectRepo projectRepo){
+        this.projectRepo = projectRepo;
+    }
 
     public ResponseEntity<?> createProject(@RequestBody ProjectCreate model) {
         Project project = new Project(model.getProjectName(), model.getProjectDescription(), model.isActive());
@@ -22,5 +26,9 @@ public class ProjectService {
 
     public Project findByProjectId(Long projectId){
         return projectRepo.getByProjectId(projectId);
+    }
+
+    public void delete(Long projectId){
+        projectRepo.deleteById(projectId);
     }
 }

@@ -16,9 +16,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/bug")
 public class BugController {
     @Autowired
-    private BugRepo bugRepo;
-
-    @Autowired
     private BugService bugService;
 
     @Autowired

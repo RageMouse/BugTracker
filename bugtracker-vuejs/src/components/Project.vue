@@ -17,22 +17,26 @@
     </v-card-text>
 
     <v-card-actions>
+      <v-btn depressed color="error" @click.stop="showDeleteDialog=true">Delete</v-btn>
       <v-spacer></v-spacer>
       <v-btn depressed color="primary" @click.stop="showEditForm=true">Edit</v-btn>
       <v-btn depressed color="primary" to="/projects">Back</v-btn>
     </v-card-actions>
     <EditProject :visible="showEditForm" @close="showEditForm=false"/>
+    <DeleteProject :visible="showDeleteDialog" @close="showDeleteDialog=false"/>
   </v-card>
   
 </template>
 
 <script>
 import EditProject from "./EditProject"
+import DeleteProject from "./DeleteProject"
 
 export default {
   name: "projectDetails",
   components: {
-    EditProject
+    EditProject,
+    DeleteProject
   },
   computed: {
     project() {
@@ -49,6 +53,7 @@ export default {
   },
   data: () => ({
     showEditForm: false,
+    showDeleteDialog: false
   }),
 };
 </script>

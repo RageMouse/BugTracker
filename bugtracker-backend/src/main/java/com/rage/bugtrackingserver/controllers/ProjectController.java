@@ -46,4 +46,9 @@ public class ProjectController {
         projectRepo.save(project);
         return new ResponseEntity<>(project, HttpStatus.OK);
     }
+
+    @DeleteMapping(path = "/{id}")
+    public void deleteProject(@PathVariable("id") Long id) {
+        projectService.delete(id);
+    }
 }
