@@ -32,7 +32,7 @@
         </v-form>
       </v-card-text>
       <v-card-actions>
-        <v-btn color="primary" @click="validate">Update</v-btn>
+        <v-btn color="primary" @click="validate" @click.stop="show = false">Update</v-btn>
         <v-btn color="primary" @click.stop="show = false">Close</v-btn>
       </v-card-actions>
     </v-card>

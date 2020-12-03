@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from "axios";
+import router from '../router';
 
 
 Vue.use(Vuex);
@@ -17,13 +18,13 @@ export const store = new Vuex.Store({
         bugs: {}
     },
     getters: {
-        projects(state){
+        projects(state) {
             return state.projects
         },
-        project(state){
+        project(state) {
             return state.project
         },
-        bugs(state){
+        bugs(state) {
             return state.bugs
         }
     },
@@ -38,18 +39,18 @@ export const store = new Vuex.Store({
                     throw new Error(error)
                 });
         },
-        createProject(context, data){
+        createProject(context, data) {
             return axios
                 .post("http://192.168.99.100:8008/project/", {
                     projectName: data.projectName,
                     projectDescription: data.projectDescription,
                     active: data.active
                 })
-                .then(({data}) => {
+                .then(({ data }) => {
                     context.commit("addProject", data)
-                  }).catch((error) => {
+                }).catch((error) => {
                     throw error
-                  })
+                })
         },
         getProject(context, id) {
             return axios
@@ -85,7 +86,7 @@ export const store = new Vuex.Store({
                     throw new Error(error)
                 });
         },
-        submitBug(context, data){
+        submitBug(context, data) {
             return axios
                 .post("http://192.168.99.100:8008/bug/", {
                     bugTitle: data.bugTitle,
@@ -93,27 +94,39 @@ export const store = new Vuex.Store({
                     solved: data.solved,
                     projectId: data.projectId
                 })
-                .then(({data}) => {
+                .then(({ data }) => {
                     context.commit("addBug", data)
-                  }).catch((error) => {
+                }).catch((error) => {
                     throw error
-                  })
+                })
+        },
+        deleteProject(context, id) {
+            return axios
+                .delete("http://192.168.99.100:8008/project/" + id)
+                .then((response) => {
+                    if (response.status !== 204) {
+                        router.push('/projects');
+                    }
+                })
+                .catch(error => {
+                    throw new Error(error)
+                });
         },
     },
     mutations: {
-        setProjects(state, projects){
+        setProjects(state, projects) {
             state.projects = projects;
         },
-        setProject(state, project){
+        setProject(state, project) {
             state.project = project;
         },
-        addProject(state, project){
+        addProject(state, project) {
             state.projects.push(project)
         },
-        setBugs(state, bugs){
+        setBugs(state, bugs) {
             state.bugs = bugs;
         },
-        addBug(state, bug){
+        addBug(state, bug) {
             state.bugs.push(bug)
         },
     }
