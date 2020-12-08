@@ -5,12 +5,16 @@
 
       <v-col class="mb-4">
         <h1 class="display-2 font-weight-bold mb-3">
-          Here are all the current projects.
+          Here is the currently selected project.
         </h1>
 
         <v-banner class="subheading font-weight-regular">
-          Where projects comes to die.
+          Where bugs go to get squashed.
         </v-banner>
+        <v-col  >
+        </v-col>
+        <Project/>
+        <BugList/>
       </v-col>
     </v-row>
     <v-row> </v-row>
@@ -18,8 +22,14 @@
 </template>
 
 <script>
+import Project from '@/components/Project.vue'
+import BugList from '../components/BugList.vue'
+
 export default {
-  name: "Project",
-  components: {},
+  name: "ProjectDetails",
+  components: {
+    Project,
+    BugList
+  }
 };
 </script>

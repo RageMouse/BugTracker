@@ -79,7 +79,7 @@ export default {
       }
     },
     connect() {
-      this.socket = new SockJS("http://localhost:8008/websocket");
+      this.socket = new SockJS("http://192.168.99.100:8008/websocket");
       this.stompClient = Stomp.over(this.socket);
       this.stompClient.connect(
         {},
@@ -90,7 +90,7 @@ export default {
             console.log(tick);
             this.received_messages.push(JSON.parse(tick.body).content);
           });
-          this.text + "You are part of the Great Scheme."
+          this.text = "You are part of the Great Scheme."
         },
         error => {
           console.log(error);
@@ -104,6 +104,7 @@ export default {
         this.stompClient.disconnect();
       }
       this.connected = false;
+      this.text = "You escape this time."
     },
     tickleConnection() {
       this.connected ? this.disconnect() : this.connect();
