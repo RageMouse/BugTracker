@@ -1,5 +1,6 @@
 package com.rage.bugtrackingserver.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sun.istack.NotNull;
 import lombok.Data;
 
@@ -22,8 +23,9 @@ public class Project {
     @NotNull
     private boolean active;
 
-    @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "project")
-    private List<Bug> projectBugList;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "project")
+    @JsonBackReference
+    private List<Bug> bugs;
 
     public Project() {
 
@@ -35,10 +37,10 @@ public class Project {
         this.active = active;
     }
 
-    public Project(String projectName, String projectDescription, boolean active, List<Bug> projectBugList) {
-        this.projectName = projectName;
-        this.projectDescription = projectDescription;
-        this.active = active;
-        this.projectBugList = projectBugList;
-    }
+//    public Project(String projectName, String projectDescription, boolean active, List<Bug> projectBugList) {
+//        this.projectName = projectName;
+//        this.projectDescription = projectDescription;
+//        this.active = active;
+//        this.projectBugList = projectBugList;
+//    }
 }
