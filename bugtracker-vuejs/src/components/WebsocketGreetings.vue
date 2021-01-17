@@ -6,8 +6,8 @@
       </v-col>
 
       <v-col class="mb-4">
-        <h1 class="display-2 font-weight-bold mb-3">Welcome to Websocket Test</h1>
-        <h2>Websocket connection: {{ text }}</h2>
+        <h1 class="display-2 font-weight-bold mb-3">Welcome to the Chat!</h1>
+        <h2>Chat connection status: {{ text }}</h2>
         <v-btn class="mr-2" color="success" :disabled="connected == true" @click.prevent="connect">Connect</v-btn>
         <v-btn color="error" :disabled="connected == false" @click.prevent="disconnect">Disconnect</v-btn>
       </v-col>
@@ -20,10 +20,10 @@
       </v-col>
       <div class="row">
         <div class="col-md-12">
-          <table id="conversation" class="table table-striped">
-            <thead>
+          <table id="conversation" class="table table-striped" style="text-align: left">
+            <thead >
               <tr>
-                <th>Greetings</th>
+                <th>Chat</th>
               </tr>
             </thead>
             <tbody>
