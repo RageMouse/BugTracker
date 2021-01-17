@@ -14,11 +14,12 @@
 
         <v-list-item :key="bug.bugTitle">
           <v-list-item-avatar>
-            <v-img src="https://cdn.discordapp.com/avatars/98846273649508352/6b543b96447b5a6e1bb003c143b86d3e.png?size=128"></v-img>
+            <v-img src="https://cdn.discordapp.com/avatars/98846273649508352/3104db744edf79d081088a1d20f5ac16.webp?size=128"></v-img>
           </v-list-item-avatar>
 
           <v-list-item-content>
             <v-list-item-title v-html="bug.bugTitle"></v-list-item-title>
+            <v-list-item-subtitle >Dennis Sperber</v-list-item-subtitle>
             <v-list-item-subtitle v-html="bug.bugDescription"></v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
